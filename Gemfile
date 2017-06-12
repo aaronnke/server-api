@@ -48,3 +48,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Direct upload to S3
 gem 'aws-sdk'
+gem 'aws-sdk-resources'

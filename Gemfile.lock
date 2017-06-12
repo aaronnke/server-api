@@ -157,6 +157,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  aws-sdk-resources
   byebug
   factory_girl_rails
   listen (>= 3.0.5, < 3.2)

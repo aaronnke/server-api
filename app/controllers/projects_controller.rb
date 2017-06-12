@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   include Response
   before_action :set_project, only: [:show, :update]
-  # before_action :set_s3_direct_post, only: [:create, :update]
+  before_action :set_s3_direct_post, only: [:new]
 
   # GET /todos
   def index
@@ -16,8 +16,7 @@ class ProjectsController < ApplicationController
 
   # GET /todos/new
   def new
-    @project = Project.new
-    json_response(@project)
+    json_response(@s3_direct_post)
   end
 
   # POST /todos
@@ -47,7 +46,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  # def set_s3_direct_post
-  #   @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
-  # end
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.object(SecureRandom.uuid).presigned_url(:put, acl: 'public-read')
+  end
 end
